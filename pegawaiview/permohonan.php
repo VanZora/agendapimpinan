@@ -1,4 +1,4 @@
-<?php $page = "permohonan";
+<?php ob_start(); 
 include 'header.php';
 
 require '../function.php';
@@ -43,7 +43,7 @@ if (isset($_GET["id"])) {
                 $data1 = mysqli_query($conn, "select * from pegawai where username = '$username'");
                 $result = mysqli_fetch_assoc($data1);
                 $user = $result['nik'];
-                $data = mysqli_query($conn, "select permohonan.*, agenda.id_agenda, agenda.timestamp, agenda.judul, agenda.tanggal from permohonan INNER JOIN agenda ON permohonan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON permohonan.nik_pegawai = pegawai.nik where permohonan.nik_pegawai = '$user'");
+                $data = mysqli_query($conn, "select permohonan.*, agenda.id_agenda, agenda.timestamp, agenda.judul, agenda.tanggal from permohonan INNER JOIN agenda ON permohonan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON permohonan.nik_pegawai = pegawai.nik where permohonan.nik_pegawai = '$user' and agenda.status='$status'");
 
                 while ($row = mysqli_fetch_array($data)) { ?>
                     <tr>

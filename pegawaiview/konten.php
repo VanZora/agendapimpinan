@@ -1,6 +1,13 @@
 <?php
 
-    if(@$_GET['page']=='permohonan'){
+    if(@$_GET['page']=='agendabaru'){
+        $status = "Diajukan";
+        $page = "agendabaru";
+        include "permohonan.php";
+    }
+    else if(@$_GET['page']=='disposisi'){
+        $status = "Didisposisikan";
+        $page = "disposisi";
         include "permohonan.php";
     }
     else if(@$_GET['page']=='detailagenda'){
@@ -12,7 +19,7 @@
     else if(@$_GET['page']=='hasil'){
         include "hasil.php";
     }
-    else if(@$_GET['page']=='disposisi'){
+    else if(@$_GET['page']=='disposisikan'){
         include "disposisi.php";
     }
     else {

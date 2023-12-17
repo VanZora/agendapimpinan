@@ -1,4 +1,4 @@
-<?php $page = "jabatan";
+<?php ob_start(); $page = "jabatan";
 include 'header.php';
 
 require '../function.php';

@@ -1,4 +1,5 @@
-<?php $page = "agenda";
+<?php ob_start();
+$page = "agenda";
 include 'header.php';
 
 require '../function.php';
@@ -31,84 +32,64 @@ if (isset($_GET["id_agenda"])) {
     $data1 = mysqli_query($conn, "select *, jabatan.nama_jabatan from pegawai inner join jabatan on pegawai.id_jabatan = jabatan.id_jabatan where username = '$username'");
     $result = mysqli_fetch_assoc($data1);
     ?>
-    <div class="row">
-        <div class="col">
-            <td>
-                <blockquote class="quote-info mt-0 bayangan">
-                    <h5 id="tip">Selamat Datang! <?php echo $result['nama']; ?></h5>
-                    <p><?php echo $result['nama_jabatan']; ?> </p>
-                </blockquote>
-            </td>
-        </div>
-        <div class="col">
-            <td>
-                <blockquote class="quote-orange mt-0 bayangan">
-                    <h5 id="tip">Tanggal </h5>
-                    <p><?php echo date("m/d/Y"); ?></p>
-                </blockquote>
-            </td>
-        </div>
-    </div>
-    <div class="container">
-        <div class="d-grid gap-2">
-            <a onclick="show()" class="btn btn-secondary btn-sm"><i class='bx bx-calendar nav_icon'></i> </a>
-        </div><br>
-        <div class="table-responsive" id="the-table">
-            <table id="example" class="table table-striped border-light-subtle">
-                <thead>
+    <div class="d-grid gap-2">
+        <button onclick="show()" class="btn btn-secondary btn-sm"><i class='bx bx-calendar nav_icon'></i> </button>
+    </div><br>
+    <div class="table-responsive" id="the-table">
+        <table id="example" class="table table-striped border-light-subtle">
+            <thead>
+                <tr>
+                    <th>ID AGENDA</th>
+                    <th>JUDUL</th>
+                    <th>DESKRIPSI</th>
+                    <th>LIST TANGGAL</th>
+                    <th>STATUS</th>
+                    <th>AKSI</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                <?php
+                $user = $result['nik'];
+
+                //$dataa = mysqli_query($conn, "select *, pegawai.nama from agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik where nik_pegawai='$user' and status='Dilaksanakan'");
+                $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status!='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status='Dilaksanakan'");
+                while ($row = mysqli_fetch_array($data)) { ?>
                     <tr>
-                        <th>ID AGENDA</th>
-                        <th>JUDUL</th>
-                        <th>DESKRIPSI</th>
-                        <th>LIST TANGGAL</th>
-                        <th>STATUS</th>
-                        <th>AKSI</th>
+                        <td><?php echo $row['id_agenda']; ?></td>
+                        <td><?php echo $row['judul']; ?></td>
+                        <td><?php echo $row['deskripsi']; ?></td>
+                        <td><?php echo $row['tanggal']; ?></td>
+                        <td><?php echo $row['status']; ?></td>
+                        <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary">Detail</a>
                     </tr>
-                </thead>
+                <?php }
+                ?>
+            </tbody>
+        </table>
+    </div>
 
-                <tbody>
-                    <?php
-                    $user = $result['nik'];
-
-                    //$dataa = mysqli_query($conn, "select *, pegawai.nama from agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik where nik_pegawai='$user' and status='Dilaksanakan'");
-                    $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status!='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status='Dilaksanakan'");
-                    while ($row = mysqli_fetch_array($data)) { ?>
-                        <tr>
-                            <td><?php echo $row['id_agenda']; ?></td>
-                            <td><?php echo $row['judul']; ?></td>
-                            <td><?php echo $row['deskripsi']; ?></td>
-                            <td><?php echo $row['tanggal']; ?></td>
-                            <td><?php echo $row['status']; ?></td>
-                            <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary">Detail</a>
-                        </tr>
-                    <?php }
-                    ?>
-                </tbody>
-            </table>
-        </div>
-
-        <div id="the-calendar">
-            <div class="card-body lg-6">
-                <div id="calendar"></div>
-            </div>
+    <div id="the-calendar">
+        <div class="card-body lg-6">
+            <div id="calendar"></div>
         </div>
     </div>
 </body>
 
 <script>
     let mode = 1;
-    $("#the-table").hide();
-    $("#the-calendar").show();
+    $("#the-table").show();
+    $("#the-calendar").hide();
 
     function show() {
 
         if (mode == 1) {
-            $("#the-calendar").hide();
-            $("#the-table").show();
-            mode = 2;
-        } else {
             $("#the-calendar").show();
             $("#the-table").hide();
+            mode = 2;
+        } else {
+            $("#the-calendar").hide();
+            $("#the-table").show();
             mode = 1;
         }
     }
@@ -124,7 +105,7 @@ if (isset($_GET["id_agenda"])) {
             editable: false,
             events: [
                 <?php
-                $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and status='Dilaksanakan'");
+                $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status!='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status='Dilaksanakan'");
 
                 while ($k = mysqli_fetch_array($data)) {
                     $title = $k['judul'];

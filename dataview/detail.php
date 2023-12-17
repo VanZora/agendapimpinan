@@ -1,4 +1,4 @@
-<?php
+<?php ob_start(); 
 include 'header.php';
 include "../function.php";
 
@@ -36,7 +36,7 @@ if (isset($_GET["id_agenda"])) {
 
 </head>
 
-<body><br><br>
+<body>
     <div class="container">
         <button class="btn btn-outline-secondary btn-sm" onclick="history.back()"><i class='bx bx-arrow-back'></i></button><br><br>
         <div class="text-center">

@@ -1,11 +1,11 @@
-<?php $page = "hasil";
+<?php ob_start(); $page = "hasil";
 include 'header.php';
 
 require '../function.php';
 if (isset($_GET["id_agenda"])) {
 
     if (deleteagenda($_GET) > 0)
-        header("location:?page=agenda");
+        header("location:?page=hasil");
     else
         echo mysqli_error($conn);
 }

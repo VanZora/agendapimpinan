@@ -1,4 +1,4 @@
-<?php $page = "dashboard";
+<?php ob_start(); $page = "dashboard";
 include 'header.php';
 
 require '../function.php';

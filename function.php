@@ -220,7 +220,7 @@ function disposisikan($data)
     $data2 = mysqli_query($conn, "select * from pegawai where nik = '$nik_perwakilan'");
     $hasil2 = mysqli_fetch_assoc($data2); $pegawai_after = $hasil2['nama'];
 
-    mysqli_query($conn, "update agenda set nik_pegawai='$nik_perwakilan' where id_agenda='$id_agenda'");
+    mysqli_query($conn, "update agenda set nik_pegawai='$nik_perwakilan', status='Didisposisikan' where id_agenda='$id_agenda'");
     mysqli_query($conn, "insert into permohonan values(NULL, '$id_agenda', '$nik_perwakilan', '$catatan')");
     mysqli_query($conn, "insert into disposisi values(NULL, '$id_agenda', '$pegawai_before', '$pegawai_after', '$catatan', '$timestamp')");
     mysqli_query($conn, "insert into undangan values(NULL, '$id_agenda', '$nik_perwakilan')");

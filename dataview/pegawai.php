@@ -1,4 +1,4 @@
-<?php $page = "pegawai";
+<?php ob_start(); $page = "pegawai";
 include 'header.php';
 
 require '../function.php';

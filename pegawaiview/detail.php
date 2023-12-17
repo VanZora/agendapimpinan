@@ -1,4 +1,4 @@
-<?php
+<?php ob_start(); 
 include 'header.php';
 include "../function.php";
 
@@ -11,7 +11,7 @@ if (isset($_POST["btn_verifikasi"])) {
 
 if (isset($_POST["btn_selesai"])) {
     if (selesaiRapat($_POST) > 0)
-        header("location:?page=permohonan");
+        header("location:?page=hasil");
     else
         echo mysqli_error($conn);
 }
@@ -42,8 +42,6 @@ $k2 = mysqli_fetch_assoc($query1);
 </head>
 
 <body>
-    <br><br>
-
     <div class="container">
         <div class="text-center"><h3>DETAIL AGENDA</h3></div><br>
         <table class="table">
@@ -99,7 +97,7 @@ $k2 = mysqli_fetch_assoc($query1);
             <input type="hidden" name="id_permohonan" value="<?php echo $id_permohonan; ?>">
             <input type="hidden" name="id_agenda" value="<?php echo $k['id_agenda']; ?>">
             <button name="btn_verifikasi" class="btn btn-outline-secondary btn-sm">Verifikasi kehadiran</button>
-            <a href="?page=disposisi&id_agenda=<?php echo $k['id_agenda']; ?>&id_permohonan=<?php echo $id_permohonan; ?>" class="btn btn-outline-secondary btn-sm">Disposisikan</a>
+            <a href="?page=disposisikan&id_agenda=<?php echo $k['id_agenda']; ?>&id_permohonan=<?php echo $id_permohonan; ?>" class="btn btn-outline-secondary btn-sm">Disposisikan</a>
         </div>
     </form>
     

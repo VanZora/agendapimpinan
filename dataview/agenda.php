@@ -1,4 +1,4 @@
-<?php $page = "agenda";
+<?php ob_start(); $page = "agenda";
 include 'header.php';
 
 require '../function.php';
@@ -27,7 +27,7 @@ if (isset($_GET["id_agenda"])) {
 <body>
     <div class="d-grid gap-2">
         <a href="?page=tambahagenda" class="btn btn-outline-secondary btn-sm">Tambah Agenda</a>
-        <a onclick="show()" class="btn btn-secondary btn-sm"><i class='bx bx-calendar nav_icon'></i> </a>
+        <button onclick="show()" class="btn btn-secondary btn-sm"><i class='bx bx-calendar nav_icon'></i> </button>
 
     </div><br>
 
