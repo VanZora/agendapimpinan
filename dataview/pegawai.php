@@ -46,8 +46,8 @@ if (isset($_GET["id"])) {
                     <td><?php echo $row['nama']; ?></td>
                     <td><?php echo $row['email']; ?></td>
                     <td><?php echo $row['jabatan']; ?></td>
-                    <td><a href="?page=editpegawai&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="?page=pegawai&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger btn-delet">Hapus</a>
+                    <td><a href="?page=editpegawai&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-warning"><i class='bx bx-edit nav_icon'></i></a>
+                        <a href="?page=pegawai&id=<?php echo $row['id']; ?>" class="btn btn-sm btn-danger btn-delet"><i class='bx bx-trash nav_icon'></i></a>
                 </tr>
             <?php }
             ?>

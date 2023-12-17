@@ -28,7 +28,7 @@ if (isset($_GET["id_agenda"])) {
         <thead>
             <tr>
                 <th>JUDUL AGENDA</th>
-                <th>NAMA PEGAWAI</th>
+                <th>PIMPINAN YANG BERHADIR</th>
                 <th>TANGGAL SELESAI</th>
                 <th>KESIMPULAN</th>
                 <th>AKSI</th>
@@ -45,7 +45,8 @@ if (isset($_GET["id_agenda"])) {
                     <td><?php echo $row['nama']; ?></td>
                     <td><?php echo $row['tanggal_selesai']; ?></td>
                     <td><?php echo $row['kesimpulan']; ?></td>
-                    <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary">Detail</a> <a href="?page=agenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-danger btn-delet">Hapus</a>
+                    <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary"><i class='bx bx-detail nav_icon'></i></a> 
+                    <a href="?page=agenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-danger btn-delet"><i class='bx bx-trash nav_icon'></i></a>
                 </tr>
             <?php }
             ?>

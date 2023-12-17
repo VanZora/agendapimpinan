@@ -1,4 +1,4 @@
-<?php $page = "dashboard";
+<?php $page = "jabatan";
 include 'header.php';
 
 require '../function.php';
@@ -35,15 +35,11 @@ if (isset($_POST["tambah"])) {
     <form action="" method="post">
         
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">ID JABATAN</label>
-            <input name="id_jabatan" type="text" class="form-control" id="validationDefault01" required>
-        </div>
-        <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">NAMA JABATAN</label>
             <input name="nama_jabatan" type="text" class="form-control" id="validationDefault01" required>
         </div>
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">LEVEL</label>
+            <label for="exampleFormControlInput1" class="form-label">NO PRIORITAS</label>
             <input name="level" type="text" class="form-control" id="validationDefault01" required>
         </div>
         <div class="d-grid gap-2">

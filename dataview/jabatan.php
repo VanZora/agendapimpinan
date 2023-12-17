@@ -21,7 +21,7 @@ if (isset($_GET["id_jabatan"])) {
 
 <body>
     <div class="d-grid gap-2">
-        <a href="?page=tambahjabatan" class="btn btn-outline-secondary btn-sm">Tambah Agenda</a>
+        <a href="?page=tambahjabatan" class="btn btn-outline-secondary btn-sm">Tambah Jabatan</a>
     </div><br>
 
     <div class="table-responsive">
@@ -29,7 +29,7 @@ if (isset($_GET["id_jabatan"])) {
         <thead>
             <tr>
                 <th>ID JABATAN</th>
-                <th>NAMA JABATAN</th>
+                <th>NO PRIORITAS</th>
                 <th>LEVEL</th>
                 <th>AKSI</th>
             </tr>
@@ -44,8 +44,8 @@ if (isset($_GET["id_jabatan"])) {
                     <td><?php echo $row['id_jabatan']; ?></td>
                     <td><?php echo $row['nama_jabatan']; ?></td>
                     <td><?php echo $row['level']; ?></td>
-                    <td><a href="?page=editjabatan&id_jabatan=<?php echo $row['id_jabatan']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                        <a href="?page=jabatan&id_jabatan=<?php echo $row['id_jabatan']; ?>" class="btn btn-sm btn-danger btn-delet">Hapus</a>
+                    <td><a href="?page=editjabatan&id_jabatan=<?php echo $row['id_jabatan']; ?>" class="btn btn-sm btn-warning"><i class='bx bx-edit nav_icon'></i></a>
+                        <a href="?page=jabatan&id_jabatan=<?php echo $row['id_jabatan']; ?>" class="btn btn-sm btn-danger btn-delet"><i class='bx bx-trash nav_icon'></i></a>
                 </tr>
             <?php }
             ?>

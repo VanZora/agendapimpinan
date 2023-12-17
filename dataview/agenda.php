@@ -55,9 +55,9 @@ if (isset($_GET["id_agenda"])) {
                         <td><?php echo $row['judul']; ?></td>
                         <td><?php echo $row['tanggal']; ?></td>
                         <td><?php echo $row['status']; ?></td>
-                        <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary">Detail</a>
-                            <a href="?page=editagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-warning">Edit</a>
-                            <a href="?page=agenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-danger btn-delet">Hapus</a>
+                        <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary"><i class='bx bx-detail nav_icon'></i></a>
+                            <a href="?page=editagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-warning"><i class='bx bx-edit nav_icon'></i></a>
+                            <a href="?page=agenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-danger btn-delet"><i class='bx bx-trash nav_icon'></i></a>
                     </tr>
                 <?php }
                 ?>
@@ -131,12 +131,15 @@ if (isset($_GET["id_agenda"])) {
                 ?> {
                         title: '<?php echo $title; ?>',
                         start: '<?php echo $start; ?>',
-                        url: "?page=detailagenda&id_agenda='<?php echo $k['id_agenda']; ?>'" // Optional, if you want to link to details.
+                        url: "?page=detailagenda&id_agenda='<?php echo $k['id_agenda']; ?>'",
+                        color: "<?php if($warna=='Selesai'){echo 'green';}else{echo 'primary';} ?>"
                     },
                 <?php } ?>
             ],
         });
     });
+
+    
 </script>
 
 </html>

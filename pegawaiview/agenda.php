@@ -71,7 +71,7 @@ if (isset($_GET["id_agenda"])) {
                     $user = $result['nik'];
 
                     //$dataa = mysqli_query($conn, "select *, pegawai.nama from agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik where nik_pegawai='$user' and status='Dilaksanakan'");
-                    $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and status='Dilaksanakan'");
+                    $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status!='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status='Dilaksanakan'");
                     while ($row = mysqli_fetch_array($data)) { ?>
                         <tr>
                             <td><?php echo $row['id_agenda']; ?></td>

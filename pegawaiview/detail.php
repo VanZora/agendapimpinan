@@ -24,12 +24,7 @@ $id_agenda = $_GET["id_agenda"];
 
 $query = "select *, pegawai.nama from agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik WHERE id_agenda = $id_agenda";
 $result = mysqli_query($conn, $query);
-
-if ($result) {
-    $k = mysqli_fetch_array($result);
-} else {
-    echo "Error: " . mysqli_error($conn); // Menampilkan pesan kesalahan SQL
-}
+$k = mysqli_fetch_array($result);
 
 $query1 = mysqli_query($conn, "select * from hasil WHERE id_agenda = $id_agenda");
 $k2 = mysqli_fetch_assoc($query1);
@@ -93,7 +88,13 @@ $k2 = mysqli_fetch_assoc($query1);
             </tr>
         </table>
 
-        <form action="" method="post" <?php if($k['status']=='Dilaksanakan' || $k['status']=='Selesai'){echo "hidden"; }?>>
+        <?php 
+        $username = $_SESSION["user"];
+        $datax = mysqli_query($conn, "select * from pegawai where username = '$username'");
+        $pegawai = mysqli_fetch_assoc($datax);
+        ?>
+
+        <form action="" method="post" <?php if($k['status']=='Dilaksanakan' || $k['status']=='Selesai' || $k['nik_pegawai']!=$pegawai['nik']){echo "hidden"; }?>>
         <div class="d-grid gap-2">
             <input type="hidden" name="id_permohonan" value="<?php echo $id_permohonan; ?>">
             <input type="hidden" name="id_agenda" value="<?php echo $k['id_agenda']; ?>">
@@ -102,11 +103,6 @@ $k2 = mysqli_fetch_assoc($query1);
         </div>
     </form>
     
-    <?php 
-    $username = $_SESSION["user"];
-    $datax = mysqli_query($conn, "select * from pegawai where username = '$username'");
-    $pegawai = mysqli_fetch_assoc($datax);
-    ?>
     <form action="" method="post" <?php if($k['status']!='Dilaksanakan' || $k['nik_pegawai']!=$pegawai['nik']){echo "hidden"; }?>>
     <h3>Kesimpulan</h3>
     <div class="d-grid gap-2">

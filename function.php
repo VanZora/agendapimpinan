@@ -144,11 +144,10 @@ function editpegawai($data)
 function tambahjabatan($data)
 {
     global $conn;
-    $id = $data['id_jabatan'];
     $nama_jabatan = $data['nama_jabatan'];
     $level = $data['level'];
 
-    mysqli_query($conn, "insert into jabatan values('$id', '$nama_jabatan', '$level')");
+    mysqli_query($conn, "insert into jabatan values(NULL, '$nama_jabatan', '$level')");
 
     return mysqli_affected_rows($conn);
 }

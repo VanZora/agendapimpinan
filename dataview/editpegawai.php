@@ -1,4 +1,4 @@
-<?php $page = "dashboard";
+<?php $page = "pegawai";
 include 'header.php';
 
 require '../function.php';

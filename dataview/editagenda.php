@@ -1,4 +1,4 @@
-<?php $page = "dashboard";
+<?php $page = "agenda";
 include 'header.php';
 
 require '../function.php';
