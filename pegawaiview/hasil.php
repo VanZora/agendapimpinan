@@ -43,27 +43,21 @@ if (isset($_GET["id_agenda"])) {
             $result = mysqli_fetch_assoc($data1);
             $user = $result['nik'];
 
-            $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status!='Dilaksanakan'");
-            $pilah = mysqli_fetch_assoc($data);
-            $id_agenda = "";
+            // $data = mysqli_query($conn, "select *, agenda.*, pegawai.nama from undangan INNER JOIN agenda ON undangan.id_agenda = agenda.id_agenda INNER JOIN pegawai ON undangan.nik_pegawai = pegawai.nik where undangan.nik_pegawai='$user' and agenda.nik_pegawai!='$user' and status='Selesai' or undangan.nik_pegawai='$user' and agenda.nik_pegawai='$user' and status!='Dilaksanakan'");
+            // $pilah = mysqli_fetch_assoc($data);
+            // $id_agenda = $pilah['id_agenda'];
 
-            if(mysqli_num_rows($data) > 0){
-                $id_agenda = $pilah['id_agenda'];
-            }
-
-            $data2s = mysqli_query($conn, "select hasil.*, agenda.judul, agenda.nik_pegawai, pegawai.nama from hasil INNER JOIN agenda ON hasil.id_agenda = agenda.id_agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik where agenda.id_agenda='$id_agenda'");
-            
-                    
+            $data = mysqli_query($conn, "select hasil.*, agenda.judul, agenda.nik_pegawai, pegawai.nama from hasil INNER JOIN agenda ON hasil.id_agenda = agenda.id_agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik");
+            //$data2s = mysqli_query($conn, "select hasil.*, agenda.judul, agenda.nik_pegawai, pegawai.nama from hasil INNER JOIN agenda ON hasil.id_agenda = agenda.id_agenda INNER JOIN pegawai ON agenda.nik_pegawai = pegawai.nik where hasil.id_agenda='$id_agenda'");      
             //$data = mysqli_query($conn, "select hasil.*, agenda.judul, agenda.nik_pegawai from agenda INNER join hasil ON hasil.id_agenda = agenda.id_agenda INNER JOIN undangan ON undangan.nik_pegawai = agenda.nik_pegawai where undangan.nik_pegawai='$user'");
 
-            while ($row = mysqli_fetch_array($data2s)) { ?>
+            while ($row = mysqli_fetch_array($data)) { ?>
                 <tr>
                     <td><?php echo $row['judul']; ?></td>
                     <td><?php echo $row['nama']; ?></td>
                     <td><?php echo $row['tanggal_selesai']; ?></td>
                     <td><?php echo $row['kesimpulan']; ?></td>
                     <td><a href="?page=detailagenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-primary"><i class='bx bx-detail nav_icon'></i></a> 
-                    <a href="?page=agenda&id_agenda=<?php echo $row['id_agenda']; ?>" class="btn btn-sm btn-danger btn-delet"><i class='bx bx-trash nav_icon'></i></a>
                 </tr>
             <?php }
             ?>

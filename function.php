@@ -51,7 +51,7 @@ function tambahagenda($data)
     $status = "Diajukan";
     $pesan = $data['pesan'];
     date_default_timezone_set("Asia/Makassar");
-    $timestamp = date("m/d/Y - H:i");
+    $timestamp = date("Y-m-d - H:i");
 
     mysqli_query($conn, "insert into agenda values('$id', '$nik_pegawai', '$judul', '$deskripsi', '$tanggal', '$lokasi', '$status', '$timestamp')");
     mysqli_query($conn, "insert into permohonan values(NULL, '$id', '$nik_pegawai', '$pesan')");
@@ -213,7 +213,7 @@ function disposisikan($data)
     $catatan = $data['catatan'];
 
     date_default_timezone_set("Asia/Makassar");
-    $timestamp = date("m/d/Y - H:i");
+    $timestamp = date("Y-m-d - H:i");
 
     $data1 = mysqli_query($conn, "select * from pegawai where nik = '$nik_pegawai'");
     $hasil1 = mysqli_fetch_assoc($data1); $pegawai_before = $hasil1['nama'];
@@ -235,7 +235,7 @@ function selesaiRapat($data)
 
     $kesimpulan = $data['kesimpulan'];
     $id_agenda = $data['id_agenda'];
-    $timestamp = date("m/d/Y");
+    $timestamp = date("Y-m-d");
 
     mysqli_query($conn, "insert into hasil values(NULL, '$id_agenda', '$timestamp', '$kesimpulan')");
     mysqli_query($conn, "update agenda set status='Selesai' where id_agenda='$id_agenda'");

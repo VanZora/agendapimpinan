@@ -58,7 +58,7 @@ if (isset($_POST["input"])) {
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">STATUS</label>
-            <input name="status" type="text" class="form-control" id="validationDefault01" value="<?php echo $row['status']; ?>" required>
+            <input name="status" type="text" class="form-control" id="validationDefault01" value="<?php echo $row['status']; ?>" required readonly>
         </div>
 
         <div class="d-grid gap-2">

@@ -40,8 +40,7 @@ if (isset($_POST["input"])) {
         <input name="id_jabatan2" type="hidden" class="form-control" id="validationDefault01" value="<?php echo $row['id_jabatan']; ?>" required>
         
         <div class="mb-3">
-            <label for="exampleFormControlInput1" class="form-label">ID JABATAN</label>
-            <input name="id_jabatan" type="text" class="form-control" id="validationDefault01" value="<?php echo $row['id_jabatan']; ?>" required>
+            <input name="id_jabatan" type="hidden" class="form-control" id="validationDefault01" value="<?php echo $row['id_jabatan']; ?>" required>
         </div>
         <div class="mb-3">
             <label for="exampleFormControlInput1" class="form-label">NAMA JABATAN</label>

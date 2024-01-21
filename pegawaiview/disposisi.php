@@ -57,7 +57,7 @@ if (isset($_POST["tambah"])) {
                 $level = $hasil['level'];
                 $datax = mysqli_query($conn, "select * from pegawai inner join jabatan ON pegawai.id_jabatan = jabatan.id_jabatan where jabatan.level > '$level'");
                 foreach ($datax as $row) { ?>
-                    <option value="<?php echo $row['nik']; ?>"><?php echo $row['nama']; ?></option>
+                    <option value="<?php echo $row['nik']; ?>"><?php echo $row['nama']; ?> - <?php echo $row['nama_jabatan']; ?></option>
                 <?php } ?>
             </select>
         </div>
@@ -66,7 +66,7 @@ if (isset($_POST["tambah"])) {
             <input name="catatan" type="text" class="form-control" id="validationDefault01" required>
         </div>
         <div class="d-grid gap-2">
-            <input type="submit" name="tambah" value="Tambahkan" class="btn btn-secondary btn-sm btn-ganti" type="button">
+            <input type="submit" name="tambah" value="Disposisikan" class="btn btn-secondary btn-sm btn-ganti" type="button">
         </div><br><br>
     </form>
 </body>

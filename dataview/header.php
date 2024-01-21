@@ -23,7 +23,7 @@
             <li class="menu-item <?php if($page=='agenda'){ echo "active"; }?>">
               <a href="?page=agenda" class="menu-link">
                 <i class="menu-icon tf-icons bx bx-notepad"></i>
-                <div data-i18n="Analytics">Agenda</div>
+                <div data-i18n="Analytics">Semua Agenda</div>
               </a>
             </li>
 
@@ -125,12 +125,12 @@
                 <li class="nav-item lh-1 me-3">
                   <a
                     class="github-button"
-                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                    
                     data-icon="octicon-star"
                     data-size="large"
                     data-show-count="true"
-                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                    >Admint</a
+                    
+                    >Admin</a
                   >
                 </li>
 
@@ -151,7 +151,7 @@
                             </div>
                           </div>
                           <div class="flex-grow-1">
-                            <span class="fw-semibold d-block">John Doe</span>
+                            <span class="fw-semibold d-block">Aku Superadmin</span>
                             <small class="text-muted">Admin</small>
                           </div>
                         </div>
@@ -163,7 +163,7 @@
                     <li>
                       <a class="dropdown-item" href="../logout.php">
                         <i class="bx bx-power-off me-2"></i>
-                        <span class="align-middle">Log Out</span>
+                        <span class="align-middle">Sign Out</span>
                       </a>
                     </li>
                   </ul>
